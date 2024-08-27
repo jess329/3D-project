@@ -1,3 +1,4 @@
+import { OrbitControls } from 'three/examples/jsm/Addons.js'
 import './style.css'
 
 import * as THREE from "three"
@@ -26,9 +27,13 @@ scene.add(torus)
 // const material = new
 
 // Light
-const light = new THREE.PointLight(0xffffff, 100, 200)
-light.position.set(0, 10, 10)
-scene.add(light)
+const light1 = new THREE.PointLight(0xffffff, 100, 200)
+light1.position.set(0, 10, 10)
+const light2 = new THREE.PointLight(0xffffff, 100, 200)
+light2.position.set(10, 0, 10)
+const light3 = new THREE.PointLight(0xffffff, 100, 200)
+light3.position.set(0, 0, 10)
+scene.add(light1, light2, light3)
 
 // Renderer
 const canvas = document.querySelector("#canvas")
@@ -50,6 +55,9 @@ window.addEventListener("resize", (event) => {
     // Update Renderer
     renderer.setSize(sizes.width, sizes.height)
 })
+
+// Controls 
+const controls = new OrbitControls(camera, canvas)
 
 const loop = () => {
     torus.rotateX(0.01)
